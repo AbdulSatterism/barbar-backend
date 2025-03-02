@@ -16,6 +16,7 @@ import {
   IVerifyEmail,
 } from '../../../types/auth';
 // import cryptoToken from '../../../util/cryptoToken';
+
 import generateOTP from '../../../util/generateOTP';
 
 import { User } from '../user/user.model';
@@ -37,7 +38,7 @@ const loginUserFromDB = async (payload: ILoginData) => {
     );
   }
 
-  // //check user status
+  //check user status
   // if (isExistUser.status === 'delete') {
   //   throw new ApiError(
   //     StatusCodes.BAD_REQUEST,
