@@ -5,22 +5,27 @@ import { USER_ROLES } from '../enums/user';
 import { logger } from '../shared/logger';
 
 const superUser = {
-  name: 'Oeg Fitness',
+  name: 'Barbar salon',
   role: USER_ROLES.ADMIN,
   email: config.admin.email,
   password: config.admin.password,
   phone: '14524578',
   verified: true,
+  gender: 'MALE',
 };
 
 const seedAdmin = async () => {
-  const isExistSuperAdmin = await User.findOne({
-    role: USER_ROLES.ADMIN,
-  });
+  try {
+    const isExistSuperAdmin = await User.findOne({ role: USER_ROLES.ADMIN });
 
-  if (!isExistSuperAdmin) {
-    await User.create(superUser);
-    logger.info(colors.green('✔admin created successfully!'));
+    if (!isExistSuperAdmin) {
+      await User.create(superUser);
+      logger.info(colors.green('✔ admin created successfully!'));
+    } else {
+      console.log('Admin already exists.');
+    }
+  } catch (error) {
+    console.error('Error creating admin:', error);
   }
 };
 

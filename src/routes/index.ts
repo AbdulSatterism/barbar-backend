@@ -6,9 +6,6 @@ import { settingRoutes } from '../app/modules/setting/setting.route';
 import { privacyRoutes } from '../app/modules/privacy/privacy.routes';
 import { aboutRoutes } from '../app/modules/aboutUs/aboutUs.route';
 import { tersmConditionRoutes } from '../app/modules/termsAndCondition/termsAndCondition.route';
-import { PaymentRoutes } from '../app/modules/payment/payment.route';
-import { packageRoute } from '../app/modules/package/package.route';
-import { SubscriptionRoutes } from '../app/modules/subscription/subscription.route';
 
 const router = express.Router();
 
@@ -22,9 +19,9 @@ const apiRoutes = [
   { path: '/about', route: aboutRoutes },
   { path: '/terms', route: tersmConditionRoutes },
 
-  { path: '/payment', route: PaymentRoutes },
-  { path: '/package', route: packageRoute },
-  { path: '/subscription', route: SubscriptionRoutes },
+  // { path: '/payment', route: PaymentRoutes },
+  // { path: '/package', route: packageRoute },
+  // { path: '/subscription', route: SubscriptionRoutes },
 ];
 
 apiRoutes.forEach(route => router.use(route.path, route.route));

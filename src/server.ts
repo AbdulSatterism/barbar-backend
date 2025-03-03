@@ -9,8 +9,6 @@ import config from './config';
 import { socketHelper } from './helpers/socketHelper';
 import { errorLogger, logger } from './shared/logger';
 import seedAdmin from './DB';
-import { Notification } from './app/modules/notifications/notifications.model';
-import cron from 'node-cron';
 
 //uncaught exception
 process.on('uncaughtException', error => {
@@ -34,26 +32,6 @@ async function main() {
     });
 
     await seedAdmin();
-
-    //! delete all notification after 7 days. it's continues process
-
-    // Schedule the cron job to run every day at midnight
-    cron.schedule('0 0 * * *', async () => {
-      try {
-        // Calculate the date 7 days ago
-        const sevenDaysAgo = new Date();
-        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-
-        // Delete notifications older than 7 days
-        const result = await Notification.deleteMany({
-          createdAt: { $lt: sevenDaysAgo },
-        });
-
-        console.log(`Deleted ${result.deletedCount} notifications`);
-      } catch (error) {
-        console.error('Error deleting notifications:', error);
-      }
-    });
 
     //socket
     const io = new Server(server, {
