@@ -24,6 +24,7 @@ const userSchema = new Schema<IUser, UserModal>(
     password: {
       type: String,
       required: true,
+      select: false,
     },
     role: {
       type: String,
@@ -32,7 +33,8 @@ const userSchema = new Schema<IUser, UserModal>(
     },
     gender: {
       type: String,
-      default: '',
+      enum: ['MALE', 'FEMALE', 'OTHERS'],
+      required: false,
     },
     image: {
       type: String,

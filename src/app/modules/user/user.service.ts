@@ -18,29 +18,6 @@ const createUserFromDb = async (payload: IUser) => {
     throw new ApiError(StatusCodes.BAD_REQUEST, 'Failed to create user');
   }
 
-  // const otp = generateOTP();
-  // const emailValues = {
-  //   name: result.name || 'User',
-  //   otp,
-  //   email: result.email,
-  // };
-
-  // const accountEmailTemplate = emailTemplate.createAccount(emailValues);
-  // emailHelper.sendEmail(accountEmailTemplate);
-
-  // Update user with authentication details
-  // const authentication = {
-  //   oneTimeCode: otp,
-  //   expireAt: new Date(Date.now() + 20 * 60000),
-  // };
-  // const updatedUser = await User.findOneAndUpdate(
-  //   { _id: result._id },
-  //   { $set: { authentication } },
-  // );
-  // if (!updatedUser) {
-  //   throw new ApiError(StatusCodes.NOT_FOUND, 'User not found for update');
-  // }
-
   return result;
 };
 
